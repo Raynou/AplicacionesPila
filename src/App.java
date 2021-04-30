@@ -1,10 +1,8 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        Stack stack = new Stack();
+        StaticStack stack = new StaticStack(2);
+        System.out.println(stack.imprimirValorMaximo());
         stack.apilar(1);
         stack.apilar(2);
-        stack.apilar(3);
-        stack.apilar(4);
-        stack.apilar(5);
     }
 }
