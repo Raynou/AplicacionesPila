@@ -2,7 +2,6 @@ public class Stack {
     private int tope; //Sí el valor del tope es -1, significa que la pila esta vacía, se encapsula el atributo para que el usuario no lo pueda modificar
     int maxStack;
     private int[] arr;
-    private boolean sorted=false;
 
     public Stack(int maxStack){
         this.tope = -1;
