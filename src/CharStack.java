@@ -1,19 +1,16 @@
-public class CharStack{
-    // store elements of stack
+public class CharStack implements StackInterface{
     private char arr[];
-    // Representa el elemento tope del array
     private int top;
-    // total capacity of the stack
     private int capacity;
   
     // Constructor
     CharStack(int size) {
       
-      arr = new char[size];
-      capacity = size;
-      top = -1;
+      this.arr = new char[size];
+      this.capacity = size;
+      this.top = -1;
     }
-  
+
     // Apilar elementos al array
     public void push(char x) {
         // Verifica sí el array esta lleno
@@ -44,28 +41,34 @@ public class CharStack{
     }
   
     // Retorna la longitud del stack
+    @Override
     public int getSize() {
       return top + 1;
-    }
-  
-    // Verifica sí el array esta vacío
-    // Me da curiosidad como funciona este método, es diferente... ¿Cuál es la diferencia entre Boolean y boolean?
-    public Boolean isEmpty() {
-      return top == -1;
-    }
+    }    
   
     // Verifica sí el array esta lleno
+    @Override
     public Boolean isFull() {
-      return top == capacity - 1;
+        return top == capacity - 1;
     }
-  
-    // Imprime los elementos del array
-    public void printStack() {
-      for (int i = 0; i <= top; i++) {
-        System.out.print(arr[i] + ", ");
-      }
+    // Verifica sí el array esta vacío
+    @Override
+    public Boolean isEmpty() {
+        return top == -1;
     }
 
+    @Override
+    public int getCapacity(){
+        return capacity;
+    }
+    // Imprime los elementos del array
+    @Override
+    public void print() {
+        for (int i = 0; i <= top; i++) {
+            System.out.print(arr[i] + ", ");
+          }
+    }
+    
     //Retorna el elemento que esta en el tope del array sin desapilarlo
     public char peek(){
         return arr[top];
@@ -96,9 +99,10 @@ public class CharStack{
              
     }
 
-    /* Método iterativo para invertir el stack */
+    
 
-    public void reverseTheStack(){
+    @Override
+    public void reverseTheStack() {
         char aux;
         int start=0, end=top;
         while(start<end){
@@ -107,8 +111,8 @@ public class CharStack{
             arr[end] = aux;
             start++;
             end--;
-        }
-    }    
+        }       
+    }
 
     /* Método sobrecargado pensado para ser usado con el método isPalindrome*/
     public void reverseTheStack(char arr[]){
@@ -124,11 +128,14 @@ public class CharStack{
     }
     /* Método sobrecargado pensado para ser usado con el método isPalindrome*/
 
+    
 
-    public void print(){
-        for (int i = 0; i <= top; i++) {
-            System.out.print(arr[i] + ", ");
-          }
-    }
+    
+
+    
+
+    
+  
+    
 
 }

@@ -15,7 +15,7 @@ public class App {
 
       /* Ahora simplemente haz pop */
       System.out.println();
-      testStack.popInt();
+      testStack.pop();
 
       testStack.print();
 
@@ -23,9 +23,10 @@ public class App {
 
       /* Ejercicio 1. Array invertido */
       IntStack myStack = new IntStack(10);
-
+      
+      for(int i=0; i<myStack.getCapacity();i++) myStack.push(i);
       /* Se llena la pila con un ciclo */
-      for(int i=0; i<=myStack.maxStack-1;i++) myStack.push(i);
+      
       
       /* Primero se imprime la pila de manera normal */
       System.out.println("Pila normal: ");
