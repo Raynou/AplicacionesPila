@@ -1,37 +1,37 @@
 public class CharStack{
     // store elements of stack
     private char arr[];
-    // represent top of stack
+    // Representa el elemento tope del array
     private int top;
     // total capacity of the stack
     private int capacity;
   
-    // Creating a stack
+    // Constructor
     CharStack(int size) {
-      // initialize the array
-      // initialize the stack variables
+      
       arr = new char[size];
       capacity = size;
       top = -1;
     }
   
-    // push elements to the top of stack
+    // Apilar elementos al array
     public void push(char x) {
+        // Verifica sí el array esta lleno
       if (isFull()) {
         System.out.println("Stack OverFlow");
   
-        // terminates the program
+        // System.exit(1) como un especie de "break", también se puede decir que "Termina el progama"
         System.exit(1);
       }
   
-      // insert element on top of stack
+      // Inserta elementos en el array
       arr[++top] = x;
     }
   
-    // pop elements from top of stack
+    // Desapila un elemento del array
     public char pop() {
   
-      // if stack is empty
+      // Verifica sí el stack no esta lleno
       // no element to pop
       if (isEmpty()) {
         System.out.println("STACK EMPTY");
@@ -39,44 +39,46 @@ public class CharStack{
         System.exit(1);
       }
   
-      // pop element from top of stack
+      // Desapila el elemento que esta en el tope del array
       return arr[top--];
     }
   
-    // return size of the stack
+    // Retorna la longitud del stack
     public int getSize() {
       return top + 1;
     }
   
-    // check if the stack is empty
+    // Verifica sí el array esta vacío
+    // Me da curiosidad como funciona este método, es diferente... ¿Cuál es la diferencia entre Boolean y boolean?
     public Boolean isEmpty() {
       return top == -1;
     }
   
-    // check if the stack is full
+    // Verifica sí el array esta lleno
     public Boolean isFull() {
       return top == capacity - 1;
     }
   
-    // display elements of stack
+    // Imprime los elementos del array
     public void printStack() {
       for (int i = 0; i <= top; i++) {
         System.out.print(arr[i] + ", ");
       }
     }
 
-    //return the element at the top of the array
+    //Retorna el elemento que esta en el tope del array sin desapilarlo
     public char peek(){
         return arr[top];
     }
 
-    //Method for get i element
+    //Método para obtener el i-ésimo elemento del stack
     public char getElement(int i){
         return arr[top];
     }
 
 
-    public Boolean isPalindrome(/* No recibe nada */){
+    
+    public Boolean isPalindrome(){
         char auxArr[]=new char[arr.length];
         String origWord = new String(arr); 
         origWord.trim();
@@ -93,6 +95,8 @@ public class CharStack{
 
              
     }
+
+    /* Método iterativo para invertir el stack */
 
     public void reverseTheStack(){
         char aux;

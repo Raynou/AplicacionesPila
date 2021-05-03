@@ -111,17 +111,64 @@ public class App {
 
 
   }   
-  
-  /* Java implementation to convert
-    infix expression to postfix*/
-    // Note that here we use Stack class for Stack operations
 
-	// A utility function to return
-	// precedence of a given operator
-	// Higher returned value means
-	// higher precedence
+  /* Método para convertir una expresión infija a postija */
+	static String infixToPostfix(String exp){
+		// initializing empty String for result
+		String result = new String("");
+		
+		// initializing empty stack
+    CharStack stack = new CharStack(exp.length());
+		for (int i = 0; i<exp.length(); ++i){
+			char c = exp.charAt(i);
+			
+			// Sí el elemento que se ha encontrado es un operando
+			// entonces, añade este al string "result".
+			if (Character.isLetterOrDigit(c))
+				result += c;
+			
+			// Sí el carácter es igual a un '('
+			// entonces, guarda ese elemento en el stack.
+			else if (c == '(')
+				stack.push(c);
+			
+			// Sí el elemento escandeado es igual a ')',
+			// entonces desapila  e imprime los elementos del stack
+			// hasta que un '(' sea encontrado.
+			else if (c == ')'){
+        /* Mientras el stack no esté vacío y el último elemento no sea '(', simplemente se desapilan los elementos de la pila y se añaden al string "result"*/
+				while (!stack.isEmpty() && stack.peek() != '(')
+					result += stack.pop();
+				
+					stack.pop();
+			}
+			else{ // Un operador ha sido encontrado
+        /* Mientras la pila no esté vacía or sí y el valor (que se le asignó en el método Prec) sea menor o igual al valor del último elemento de la pila, entonces 
+        desapila el último elemento de la pila y añádelo a la expresión final*/
+				while (!stack.isEmpty() && Prec(c) <= Prec(stack.peek())){
+					result += stack.pop();
+			}
+
+        // Guarda el operador en la pila
+				stack.push(c);
+			}
+	
+		}
+	
+		// pop all the operators from the stack
+    /* Aquí simplemente se vacía el stack */
+		while (!stack.isEmpty()){
+			if(stack.peek() == '(')
+				return "Invalid Expression";
+			result += stack.pop();
+		}
+		return result;
+	}
+
+  // Básicamente, el método recibe un carácter y le asigna un número por el que va a definir su importancia
 	static int Prec(char ch)
 	{
+    /* Aquí se define la jerarquía de los signos de las operaciones */
 		switch (ch)
 		{
 		case '+':
@@ -136,61 +183,6 @@ public class App {
 			return 3;
 		}
 		return -1;
-	}
-	
-	// The main method that converts
-	// given infix expression
-	// to postfix expression.
-	static String infixToPostfix(String exp){
-		// initializing empty String for result
-		String result = new String("");
-		
-		// initializing empty stack
-    CharStack stack = new CharStack(exp.length());
-		for (int i = 0; i<exp.length(); ++i)
-		{
-			char c = exp.charAt(i);
-			
-			// If the scanned character is an
-			// operand, add it to output.
-			if (Character.isLetterOrDigit(c))
-				result += c;
-			
-			// If the scanned character is an '(',
-			// push it to the stack.
-			else if (c == '(')
-				stack.push(c);
-			
-			// If the scanned character is an ')',
-			// pop and output from the stack
-			// until an '(' is encountered.
-			else if (c == ')')
-			{
-				while (!stack.isEmpty() &&
-						stack.peek() != '(')
-					result += stack.pop();
-				
-					stack.pop();
-			}
-			else // an operator is encountered
-			{
-				while (!stack.isEmpty() && Prec(c)
-						<= Prec(stack.peek())){
-				
-					result += stack.pop();
-			}
-				stack.push(c);
-			}
-	
-		}
-	
-		// pop all the operators from the stack
-		while (!stack.isEmpty()){
-			if(stack.peek() == '(')
-				return "Invalid Expression";
-			result += stack.pop();
-		}
-		return result;
 	}
 }
 
