@@ -1,31 +1,78 @@
-public class CharStack extends Stack {
-    char arr[];
-
-    //Constructor
-    public CharStack(int maxStack){
-        this.tope = -1;
-        this.maxStack = maxStack;
-        arr = new char[maxStack];
+public class CharStack{
+    // store elements of stack
+    private char arr[];
+    // represent top of stack
+    private int top;
+    // total capacity of the stack
+    private int capacity;
+  
+    // Creating a stack
+    CharStack(int size) {
+      // initialize the array
+      // initialize the stack variables
+      arr = new char[size];
+      capacity = size;
+      top = -1;
+    }
+  
+    // push elements to the top of stack
+    public void push(char x) {
+      if (isFull()) {
+        System.out.println("Stack OverFlow");
+  
+        // terminates the program
+        System.exit(1);
+      }
+  
+      // insert element on top of stack
+      arr[++top] = x;
+    }
+  
+    // pop elements from top of stack
+    public char pop() {
+  
+      // if stack is empty
+      // no element to pop
+      if (isEmpty()) {
+        System.out.println("STACK EMPTY");
+        // terminates the program
+        System.exit(1);
+      }
+  
+      // pop element from top of stack
+      return arr[top--];
+    }
+  
+    // return size of the stack
+    public int getSize() {
+      return top + 1;
+    }
+  
+    // check if the stack is empty
+    public Boolean isEmpty() {
+      return top == -1;
+    }
+  
+    // check if the stack is full
+    public Boolean isFull() {
+      return top == capacity - 1;
+    }
+  
+    // display elements of stack
+    public void printStack() {
+      for (int i = 0; i <= top; i++) {
+        System.out.print(arr[i] + ", ");
+      }
     }
 
-    //Método para imprimir uno o más elementos de la pila
-    public void print(){
-        for (int i = 0; i <= tope; i++) {
-            System.out.print(arr[i] + ", ");
-          }
-    }
-    
-    //Métodos para desapilar elementos
-    public int popChar(){
-        return arr[--tope];
+    //return the element at the top of the array
+    public char peek(){
+        return arr[top];
     }
 
-    
-
-    //Método para apilar elementos
-    public void push(char n){
-        tope++; //El tope se eleva de -1 a 0
-        arr[tope]=n;
+    //Method for get i element
+    public char getElement(int i){
+        return arr[top];
     }
 
 
@@ -49,7 +96,7 @@ public class CharStack extends Stack {
 
     public void reverseTheStack(){
         char aux;
-        int start=0, end=tope;
+        int start=0, end=top;
         while(start<end){
             aux = arr[start];
             arr[start] = arr[end];
@@ -57,12 +104,12 @@ public class CharStack extends Stack {
             start++;
             end--;
         }
-    }
+    }    
 
     /* Método sobrecargado pensado para ser usado con el método isPalindrome*/
     public void reverseTheStack(char arr[]){
         char aux;
-        int start=0, end=tope;
+        int start=0, end=top;
         while(start<end){
             aux = arr[start];
             arr[start] = arr[end];
@@ -73,27 +120,11 @@ public class CharStack extends Stack {
     }
     /* Método sobrecargado pensado para ser usado con el método isPalindrome*/
 
-    public Boolean checkParenthesis(String exprString){
-        for(int i=0; i<exprString.length(); i++){
-            /* Left parenthesis array */
-            if(exprString.charAt(i)=='(' || exprString.charAt(i)=='[' || exprString.charAt(i)=='{'){
-                /* Save the character on the array */
-                arr[i]=exprString.charAt(i);
-            }
-            
-        }
 
-        char auxArr[]=new char[exprString.length()];
-        for(int i=0; i<exprString.length();i++){
-            if(exprString.charAt(i)==')' || exprString.charAt(i)==']' || exprString.charAt(i)=='}'){
-                /* Save the character on the array */
-                auxArr[i]=exprString.charAt(i);
-            }
-        }
-
-        /* Recupera el tope del array original y el tope del auxiliar */
-        if(auxArr.length==arr.length) return true;
-        else return false;        
+    public void print(){
+        for (int i = 0; i <= top; i++) {
+            System.out.print(arr[i] + ", ");
+          }
     }
 
 }

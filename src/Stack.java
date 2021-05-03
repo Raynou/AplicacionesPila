@@ -13,15 +13,17 @@ public abstract class Stack {
     /*Método para verifcar sí la pila esta llena, sí el parámetro maxStack (que es la longitud del array que define el usuario) 
     es igual a tope entonces se retorna true, sino se retorna false*/
     public boolean fullStack(){
-        if(tope==maxStack-1) return true;
-        else return false;
+        /* if(tope==maxStack-1) return true;
+        else return false; */
+        return tope == maxStack - 1;
     }
 
     /*Método para verificar sí la pila esta vacía, verifica sí el valor del tope es -1 (es decir, que no se han hecho modificaciones en la pila) en caso de ser cierto, entonces retorna
     un true, sino se retorna un false */
     public boolean voidStack(){
-        if(tope==-1) return true;
-        else return false;
+        /* if(tope==-1) return true;
+        else return false; */
+        return tope == -1;
     }
     public void emptyStack(){
         tope = -1;

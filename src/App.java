@@ -87,8 +87,8 @@ public class App {
         
       }
 
-      /* for(int i=0; i<parenthesisArr.top();i++){
-        switch(parenthesisArr.print(i)){
+      for(int i=0; i<parenthesisArr.getSize();i++){
+        switch(parenthesisArr.getElement(i)){
           case '(':
           for(int j=0; j<expression.length(); j++) if(expression.charAt(j)==')') parenthesisArr.pop(); 
             break;
@@ -99,29 +99,99 @@ public class App {
           for(int j=0; j<expression.length(); j++) if(expression.charAt(j)=='}') parenthesisArr.pop(); 
             break;
         }
-      } */
+      }
 
-      if(parenthesisArr.voidStack()) System.out.println("Los paréntesis están correctos");
+      if(!parenthesisArr.isFull()) System.out.println("Los paréntesis están correctos");
       else System.out.println("Ha ocurrido un error con los paréntesis");
 
 
       /* Ejercicio 4. Pasar una expresión de infija a postfija*/
       String infExpression = "X+Z*W";
-      CharStack operatorCharStack = new CharStack(infExpression.length());
-
-      /* Expected output: AB+ */
-      for(int i=0; i<infExpression.length(); i++){
-        if(infExpression.charAt(i)=='+' || infExpression.charAt(i)=='-') operatorCharStack.push(infExpression.charAt(i));
-        else if(infExpression.charAt(i)=='*' || infExpression.charAt(i)=='/') operatorCharStack.push(infExpression.charAt(i));
-        else if(infExpression.charAt(i)=='^') operatorCharStack.push(infExpression.charAt(i));
-        else{
-          /* Sino simplemente lo imprimes */
-          System.out.print(infExpression.charAt(i));
-        }
-      }
-
-     System.out.print(operatorCharStack.popChar());
+      System.out.println(infixToPostfix(infExpression));
 
 
-  }       
+  }   
+  
+  /* Java implementation to convert
+    infix expression to postfix*/
+    // Note that here we use Stack class for Stack operations
+
+	// A utility function to return
+	// precedence of a given operator
+	// Higher returned value means
+	// higher precedence
+	static int Prec(char ch)
+	{
+		switch (ch)
+		{
+		case '+':
+		case '-':
+			return 1;
+	
+		case '*':
+		case '/':
+			return 2;
+	
+		case '^':
+			return 3;
+		}
+		return -1;
+	}
+	
+	// The main method that converts
+	// given infix expression
+	// to postfix expression.
+	static String infixToPostfix(String exp){
+		// initializing empty String for result
+		String result = new String("");
+		
+		// initializing empty stack
+    CharStack stack = new CharStack(exp.length());
+		for (int i = 0; i<exp.length(); ++i)
+		{
+			char c = exp.charAt(i);
+			
+			// If the scanned character is an
+			// operand, add it to output.
+			if (Character.isLetterOrDigit(c))
+				result += c;
+			
+			// If the scanned character is an '(',
+			// push it to the stack.
+			else if (c == '(')
+				stack.push(c);
+			
+			// If the scanned character is an ')',
+			// pop and output from the stack
+			// until an '(' is encountered.
+			else if (c == ')')
+			{
+				while (!stack.isEmpty() &&
+						stack.peek() != '(')
+					result += stack.pop();
+				
+					stack.pop();
+			}
+			else // an operator is encountered
+			{
+				while (!stack.isEmpty() && Prec(c)
+						<= Prec(stack.peek())){
+				
+					result += stack.pop();
+			}
+				stack.push(c);
+			}
+	
+		}
+	
+		// pop all the operators from the stack
+		while (!stack.isEmpty()){
+			if(stack.peek() == '(')
+				return "Invalid Expression";
+			result += stack.pop();
+		}
+		return result;
+	}
 }
+
+/* Tienes toda la noche para arreglar este code en cuestiones de semántica y entender que puñetas hace XD */
