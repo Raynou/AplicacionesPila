@@ -23,8 +23,10 @@ public class IntStack extends Stack {
     }
     
     //Método para imprimir uno o más elementos de la pila
-    public int print(int i){
-        return arr[i];
+    public void print(){
+        for (int i = 0; i <= tope; i++) {
+            System.out.print(arr[i] + ", ");
+          }
     }
     //Método para apilar elementos
     public void push(int n){

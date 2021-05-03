@@ -11,15 +11,13 @@ public class App {
       testStack.push(6);
 
       /* Imprime el array entero */
-      for(int i=0; i<=testStack.maxStack-1;i++)
-         System.out.print(testStack.print(i)+", ");
+      testStack.print();
 
       /* Ahora simplemente haz pop */
       System.out.println();
       testStack.popInt();
 
-      for(int i=0; i<=testStack.maxStack-1;i++)
-         System.out.print(testStack.print(i)+", ");
+      testStack.print();
 
       System.out.println("\n==================");
 
@@ -32,8 +30,7 @@ public class App {
       /* Primero se imprime la pila de manera normal */
       System.out.println("Pila normal: ");
 
-      for(int i=0; i<=myStack.maxStack-1;i++)
-         System.out.print(myStack.print(i)+", ");
+      myStack.print();
       
 
       System.out.println("\nPila invertida: ");
@@ -42,8 +39,7 @@ public class App {
       myStack.reverseTheStack();
 
       /* Se imprime de nuevo la pila, pero esta vez estará en reversa */
-      for(int i=0; i<=myStack.maxStack-1;i++)
-         System.out.print(myStack.print(i)+", ");
+      myStack.print();
             
 
       /* Ejercicio 2. Palíndromo */
@@ -55,8 +51,7 @@ public class App {
       palindromeStack.push('a');
         
       System.out.println("");
-      for(int i=0; i<=palindromeStack.maxStack-1;i++)
-        System.out.print(palindromeStack.print(i));
+      palindromeStack.print();
 
       System.out.println("");
 
@@ -92,7 +87,7 @@ public class App {
         
       }
 
-      for(int i=0; i<parenthesisArr.top();i++){
+      /* for(int i=0; i<parenthesisArr.top();i++){
         switch(parenthesisArr.print(i)){
           case '(':
           for(int j=0; j<expression.length(); j++) if(expression.charAt(j)==')') parenthesisArr.pop(); 
@@ -104,7 +99,7 @@ public class App {
           for(int j=0; j<expression.length(); j++) if(expression.charAt(j)=='}') parenthesisArr.pop(); 
             break;
         }
-      }
+      } */
 
       if(parenthesisArr.voidStack()) System.out.println("Los paréntesis están correctos");
       else System.out.println("Ha ocurrido un error con los paréntesis");

@@ -9,14 +9,18 @@ public class CharStack extends Stack {
     }
 
     //Método para imprimir uno o más elementos de la pila
-    public char print(int i){
-        return arr[tope];
+    public void print(){
+        for (int i = 0; i <= tope; i++) {
+            System.out.print(arr[i] + ", ");
+          }
     }
-
+    
     //Métodos para desapilar elementos
     public int popChar(){
         return arr[--tope];
     }
+
+    
 
     //Método para apilar elementos
     public void push(char n){
