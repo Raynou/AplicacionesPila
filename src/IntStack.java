@@ -1,4 +1,4 @@
-public class IntStack implements StackInterface {
+public class IntStack implements Stack{
 
     private int arr[];
     private int top;
@@ -32,7 +32,6 @@ public class IntStack implements StackInterface {
       // Verifica sí el stack no esta vacío
       if (isEmpty()) {
         System.out.println("Pila vacía");
-        // terminates the program
         System.exit(1);
       }
   

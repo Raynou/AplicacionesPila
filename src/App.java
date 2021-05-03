@@ -3,8 +3,8 @@ public class App {
       /* Ejercicio 1. Array invertido */
       IntStack myStack = new IntStack(10);
 
-      for(int i=0; i<myStack.getCapacity();i++) myStack.push(i);
       /* Se llena la pila con un ciclo */
+      for(int i=0; i<myStack.getCapacity();i++) myStack.push(i);
       
       
       /* Primero se imprime la pila de manera normal */
@@ -59,9 +59,9 @@ public class App {
       /* Se hace un bucle para guardar los paréntesis izquierdos */
 
       for(int i=0; i<expression.length(); i++){
-        /* Left parenthesis array */
+        /* Se filtran todos los paréntesis, corchetes y/o llaves izquierdos */
         if(expression.charAt(i)=='(' || expression.charAt(i)=='[' || expression.charAt(i)=='{'){
-            /* Save the character on the array */
+            /* Se apilan en el stack */
             parenthesisArr.push(expression.charAt(i));
         }
         

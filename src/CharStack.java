@@ -1,4 +1,4 @@
-public class CharStack implements StackInterface{
+public class CharStack implements Stack{
     private char arr[];
     private int top;
     private int capacity;
