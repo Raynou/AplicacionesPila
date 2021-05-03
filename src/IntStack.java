@@ -16,7 +16,7 @@ public class IntStack implements StackInterface {
     public void push(int x) {
         // Verifica sí el array esta lleno
       if (isFull()) {
-        System.out.println("Stack OverFlow");
+        System.out.println("StackOverFlow");
   
         // System.exit(1) como un especie de "break", también se puede decir que "Termina el progama"
         System.exit(1);
@@ -29,10 +29,9 @@ public class IntStack implements StackInterface {
     // Desapila un elemento del array
     public int pop() {
   
-      // Verifica sí el stack no esta lleno
-      // no element to pop
+      // Verifica sí el stack no esta vacío
       if (isEmpty()) {
-        System.out.println("STACK EMPTY");
+        System.out.println("Pila vacía");
         // terminates the program
         System.exit(1);
       }

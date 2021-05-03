@@ -1,29 +1,8 @@
 public class App {
     public static void main(String[] args) throws Exception {
-
-      /* Pruebas básicas */
-      IntStack testStack = new IntStack(6);
-      testStack.push(1);
-      testStack.push(2);
-      testStack.push(3);
-      testStack.push(4);
-      testStack.push(5);
-      testStack.push(6);
-
-      /* Imprime el array entero */
-      testStack.print();
-
-      /* Ahora simplemente haz pop */
-      System.out.println();
-      testStack.pop();
-
-      testStack.print();
-
-      System.out.println("\n==================");
-
       /* Ejercicio 1. Array invertido */
       IntStack myStack = new IntStack(10);
-      
+
       for(int i=0; i<myStack.getCapacity();i++) myStack.push(i);
       /* Se llena la pila con un ciclo */
       
@@ -56,10 +35,10 @@ public class App {
 
       System.out.println("");
 
-      /* palindromeStack.reverseTheStack();
+      palindromeStack.reverseTheStack();
 
-      for(int i=0; i<=palindromeStack.maxStack-1;i++)
-        System.out.print(palindromeStack.print(i)); */
+      palindromeStack.print();
+      System.out.println();
 
       if(palindromeStack.isPalindrome()){
         System.out.println("Es palíndromo");
@@ -108,66 +87,63 @@ public class App {
 
       /* Ejercicio 4. Pasar una expresión de infija a postfija*/
       String infExpression = "X+Z*W";
-      System.out.println(infixToPostfix(infExpression));
+      System.out.println(infixToPfix(infExpression));
 
 
   }   
 
   /* Método para convertir una expresión infija a postija */
-	static String infixToPostfix(String exp){
-		// initializing empty String for result
-		String result = new String("");
+	static String infixToPfix(String exp){
+		String postFixExp = new String("");
 		
-		// initializing empty stack
     CharStack stack = new CharStack(exp.length());
 		for (int i = 0; i<exp.length(); ++i){
-			char c = exp.charAt(i);
+			char auxChar = exp.charAt(i);
 			
 			// Sí el elemento que se ha encontrado es un operando
 			// entonces, añade este al string "result".
-			if (Character.isLetterOrDigit(c))
-				result += c;
+			if (Character.isLetterOrDigit(auxChar))
+				postFixExp += auxChar;
 			
 			// Sí el carácter es igual a un '('
 			// entonces, guarda ese elemento en el stack.
-			else if (c == '(')
-				stack.push(c);
+			else if (auxChar == '(')
+				stack.push(auxChar);
 			
 			// Sí el elemento escandeado es igual a ')',
 			// entonces desapila  e imprime los elementos del stack
 			// hasta que un '(' sea encontrado.
-			else if (c == ')'){
+			else if (auxChar == ')'){
         /* Mientras el stack no esté vacío y el último elemento no sea '(', simplemente se desapilan los elementos de la pila y se añaden al string "result"*/
 				while (!stack.isEmpty() && stack.peek() != '(')
-					result += stack.pop();
+				 postFixExp += stack.pop();
 				
 					stack.pop();
 			}
 			else{ // Un operador ha sido encontrado
         /* Mientras la pila no esté vacía or sí y el valor (que se le asignó en el método Prec) sea menor o igual al valor del último elemento de la pila, entonces 
         desapila el último elemento de la pila y añádelo a la expresión final*/
-				while (!stack.isEmpty() && Prec(c) <= Prec(stack.peek())){
-					result += stack.pop();
+				while (!stack.isEmpty() && setPriority(auxChar) <= setPriority(stack.peek())){
+					postFixExp += stack.pop();
 			}
 
         // Guarda el operador en la pila
-				stack.push(c);
+				stack.push(auxChar);
 			}
 	
 		}
-	
-		// pop all the operators from the stack
+
     /* Aquí simplemente se vacía el stack */
 		while (!stack.isEmpty()){
 			if(stack.peek() == '(')
-				return "Invalid Expression";
-			result += stack.pop();
+				return "Carácter inválido";
+			postFixExp += stack.pop();
 		}
-		return result;
+		return postFixExp;
 	}
 
   // Básicamente, el método recibe un carácter y le asigna un número por el que va a definir su importancia
-	static int Prec(char ch)
+	static int setPriority(char ch)
 	{
     /* Aquí se define la jerarquía de los signos de las operaciones */
 		switch (ch)
@@ -187,4 +163,3 @@ public class App {
 	}
 }
 
-/* Tienes toda la noche para arreglar este code en cuestiones de semántica y entender que puñetas hace XD */

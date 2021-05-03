@@ -15,7 +15,7 @@ public class CharStack implements StackInterface{
     public void push(char x) {
         // Verifica sí el array esta lleno
       if (isFull()) {
-        System.out.println("Stack OverFlow");
+        System.out.println("StackOverFlow");
   
         // System.exit(1) como un especie de "break", también se puede decir que "Termina el progama"
         System.exit(1);
@@ -29,10 +29,8 @@ public class CharStack implements StackInterface{
     public char pop() {
   
       // Verifica sí el stack no esta lleno
-      // no element to pop
       if (isEmpty()) {
-        System.out.println("STACK EMPTY");
-        // terminates the program
+        System.out.println("Pila vacía");
         System.exit(1);
       }
   
