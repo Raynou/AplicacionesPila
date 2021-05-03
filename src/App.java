@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        IntStack stack = new IntStack();
+        IntStack stack = new IntStack(5);
         
         stack.push(1); 
         stack.push(2); 

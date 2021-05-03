@@ -2,7 +2,13 @@ public class IntStack extends Stack {
 
     private int arr[];
 
-    
+    //Constructor
+    public IntStack(int maxStack){
+        this.tope = -1;
+        this.maxStack = maxStack;
+        arr = new int[maxStack];
+    }
+
     //Devuelve el último elemento apilado
     public int info(){
         return arr[tope];
@@ -17,6 +23,9 @@ public class IntStack extends Stack {
         tope++; //El tope se eleva de -1 a 0
         arr[tope]=n;
     }
+
+    /* Método de búsqueda binaria, solo funciona para arrays de tipo númerico
+    que esten ordenados de manera descedendente o ascendente */
     
     public int binarySearchIterative(int objective){
         int start=0, end=tope;
@@ -29,6 +38,10 @@ public class IntStack extends Stack {
         return -1;
 
     }
+
+    /* Simple búsqueda secuencial, solo pasa por cada uno de los elementos del
+    array hasta encontrarse con su objetivo, útil para una pila desordenada. 
+    Nota: no debe ser usado para una pila ordenada por temas de optimización */
     public int sequientialSearch(int objective){
         for(int i=0; i<=tope;i++){
             if(arr[i]==objective){
@@ -38,6 +51,8 @@ public class IntStack extends Stack {
         return -1;
     }
 
+    /* Método iterarivo estilo BubbleSort para hacer que una pila se invierta, 
+    sirve para todo tipo de situaciones */
     public void reverseTheStack(){
         int aux, start=0, end=tope;
         while(start<end){

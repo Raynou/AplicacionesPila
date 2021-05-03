@@ -28,26 +28,5 @@ public abstract class Stack {
         tope = -1;
     }
 
-    /* public void reverseTheStack(){
-        int aux, start=0, end=tope;
-        while(start<end){
-            aux = arr[start];
-            arr[start] = arr[end];
-            arr[end] = aux;
-            start++;
-            end--;
-        }
-    }
-
-    public void reverseTheStack(){
-        char aux, start=0, end=tope;
-        while(start<end){
-            aux = charArr[start];
-            charArr[start] = charArr[end];
-            charArr[end] = aux;
-            start++;
-            end--;
-        }
-    } */
     
 }
