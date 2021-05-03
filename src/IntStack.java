@@ -17,6 +17,10 @@ public class IntStack extends Stack {
     public int info(){
         return arr[tope];
     }
+
+    public int popInt(){
+        return arr[tope--];
+    }
     
     //Método para imprimir uno o más elementos de la pila
     public int print(int i){
@@ -24,8 +28,7 @@ public class IntStack extends Stack {
     }
     //Método para apilar elementos
     public void push(int n){
-        tope++; //El tope se eleva de -1 a 0
-        arr[tope]=n;
+        arr[++tope]=n;
     }
 
     /* Método de búsqueda binaria, solo funciona para arrays de tipo númerico
