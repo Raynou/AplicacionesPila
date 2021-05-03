@@ -1,7 +1,6 @@
 public abstract class Stack {
     protected int tope;
     public int maxStack;
-
     //Retorna el valor del tope de la pila
     public int top(){
         return tope;
@@ -27,6 +26,6 @@ public abstract class Stack {
     public void emptyStack(){
         tope = -1;
     }
-
+    
     
 }

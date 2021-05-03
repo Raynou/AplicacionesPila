@@ -9,6 +9,10 @@ public class IntStack extends Stack {
         arr = new int[maxStack];
     }
 
+    /* public int top(){
+        return tope;
+    } */
+
     //Devuelve el último elemento apilado
     public int info(){
         return arr[tope];
