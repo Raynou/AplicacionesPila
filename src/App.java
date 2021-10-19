@@ -101,8 +101,9 @@ public class App {
         else if (auxChar == '(')
           stack.push(auxChar);
         else if (auxChar == ')'){
-          while (!stack.isEmpty() && stack.peek() != '(')
-          postFixExp += stack.pop();
+          while (!stack.isEmpty() && stack.peek() != '('){
+            postFixExp += stack.pop();
+          }
           stack.pop();
         }
         else{
