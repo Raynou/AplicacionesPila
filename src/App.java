@@ -1,6 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
       /* Ejercicio 1. Array invertido */
+      System.out.println("Ejercicio 1. Array invertido");
       IntStack myStack = new IntStack(10);
 
       /* Se llena la pila con un ciclo */
@@ -23,6 +24,7 @@ public class App {
             
 
       /* Ejercicio 2. Palíndromo */
+      System.out.println("\n\nEjercicio 2. Palíndromo");
 
       CharStack palindromeStack = new CharStack(3);
 
@@ -30,20 +32,15 @@ public class App {
       palindromeStack.push('n');
       palindromeStack.push('a');
         
-      System.out.println("");
       palindromeStack.print();
 
       System.out.println("");
 
       palindromeStack.reverseTheStack();
-
-      palindromeStack.print();
-      System.out.println();
-
       if(palindromeStack.isPalindrome()){
-        System.out.println("Es palíndromo");
+        System.out.println("Es palíndromo\n");
       }else{
-        System.out.println("No es palíndromo");
+        System.out.println("No es palíndromo\n");
       }
 
       /* Para mejorar este ejercicio y orientarlo al usuario, podrías usar
@@ -53,15 +50,13 @@ public class App {
 
 
       /* Ejercicio 3. Válidar paréntesis */
+      System.out.println("Ejercicio 3. Válidar paréntesis");
+
       String expression = "(A+B)*(B/C)";
       CharStack parenthesisArr = new CharStack(expression.length());
 
-      /* Se hace un bucle para guardar los paréntesis izquierdos */
-
       for(int i=0; i<expression.length(); i++){
-        /* Se filtran todos los paréntesis, corchetes y/o llaves izquierdos */
         if(expression.charAt(i)=='(' || expression.charAt(i)=='[' || expression.charAt(i)=='{'){
-            /* Se apilan en el stack */
             parenthesisArr.push(expression.charAt(i));
         }
         
@@ -81,12 +76,14 @@ public class App {
         }
       }
 
-      if(!parenthesisArr.isFull()) System.out.println("Los paréntesis están correctos");
-      else System.out.println("Ha ocurrido un error con los paréntesis");
+      if(!parenthesisArr.isFull()) System.out.println("Los paréntesis están correctos en la expresión " + expression+"\n");
+      else System.out.println("Ha ocurrido un error con los paréntesis\n");
 
 
       /* Ejercicio 4. Pasar una expresión de infija a postfija*/
-      String infExpression = "X+Z*W";
+      System.out.println("Ejercicio 4. De infija a postfija");
+
+      String infExpression = "4*(5+6-(8/2^3)-7)-1";
       System.out.println(infixToPfix(infExpression));
 
 
@@ -99,41 +96,28 @@ public class App {
     CharStack stack = new CharStack(exp.length());
 		for (int i = 0; i<exp.length(); ++i){
 			char auxChar = exp.charAt(i);
-			
-			// Sí el elemento que se ha encontrado es un operando
-			// entonces, añade este al string "result".
+
 			if (Character.isLetterOrDigit(auxChar))
 				postFixExp += auxChar;
-			
-			// Sí el carácter es igual a un '('
-			// entonces, guarda ese elemento en el stack.
+	
 			else if (auxChar == '(')
 				stack.push(auxChar);
-			
-			// Sí el elemento escandeado es igual a ')',
-			// entonces desapila  e imprime los elementos del stack
-			// hasta que un '(' sea encontrado.
+
 			else if (auxChar == ')'){
-        /* Mientras el stack no esté vacío y el último elemento no sea '(', simplemente se desapilan los elementos de la pila y se añaden al string "result"*/
 				while (!stack.isEmpty() && stack.peek() != '(')
 				 postFixExp += stack.pop();
 				
 					stack.pop();
 			}
-			else{ // Un operador ha sido encontrado
-        /* Mientras la pila no esté vacía or sí y el valor (que se le asignó en el método Prec) sea menor o igual al valor del último elemento de la pila, entonces 
-        desapila el último elemento de la pila y añádelo a la expresión final*/
+			else{ 
 				while (!stack.isEmpty() && setPriority(auxChar) <= setPriority(stack.peek())){
 					postFixExp += stack.pop();
 			}
-
-        // Guarda el operador en la pila
 				stack.push(auxChar);
 			}
 	
 		}
 
-    /* Aquí simplemente se vacía el stack */
 		while (!stack.isEmpty()){
 			if(stack.peek() == '(')
 				return "Carácter inválido";
@@ -142,10 +126,9 @@ public class App {
 		return postFixExp;
 	}
 
-  // Básicamente, el método recibe un carácter y le asigna un número por el que va a definir su importancia
+  // Método para definir la proridad de caracteres
 	static int setPriority(char ch)
 	{
-    /* Aquí se define la jerarquía de los signos de las operaciones */
 		switch (ch)
 		{
 		case '+':
