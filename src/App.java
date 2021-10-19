@@ -90,59 +90,58 @@ public class App {
   }   
 
   /* Método para convertir una expresión infija a postija */
-	static String infixToPfix(String exp){
-		String postFixExp = new String("");
+static String infixToPfix(String exp){
+	String postFixExp = new String("");
 		
-    CharStack stack = new CharStack(exp.length());
-		for (int i = 0; i<exp.length(); ++i){
-			char auxChar = exp.charAt(i);
+  CharStack stack = new CharStack(exp.length());
+	for (int i = 0; i<exp.length(); ++i){
+		char auxChar = exp.charAt(i);
 
-			if (Character.isLetterOrDigit(auxChar))
-				postFixExp += auxChar;
+		if (Character.isLetterOrDigit(auxChar))
+			postFixExp += auxChar;
 	
-			else if (auxChar == '(')
-				stack.push(auxChar);
+		else if (auxChar == '(')
+			stack.push(auxChar);
 
-			else if (auxChar == ')'){
-				while (!stack.isEmpty() && stack.peek() != '(')
-				 postFixExp += stack.pop();
-				
-					stack.pop();
-			}
-			else{ 
-				while (!stack.isEmpty() && setPriority(auxChar) <= setPriority(stack.peek())){
-					postFixExp += stack.pop();
+		else if (auxChar == ')'){
+			while (!stack.isEmpty() && stack.peek() != '(')
+			postFixExp += stack.pop();				
+				stack.pop();
+		}
+		else{ 
+			while (!stack.isEmpty() && setPriority(auxChar) <= setPriority(stack.peek())){
+				postFixExp += stack.pop();
 			}
 				stack.push(auxChar);
-			}
+		}
 	
-		}
-
-		while (!stack.isEmpty()){
-			if(stack.peek() == '(')
-				return "Carácter inválido";
-			postFixExp += stack.pop();
-		}
-		return postFixExp;
 	}
+
+	while (!stack.isEmpty()){
+		if(stack.peek() == '(')
+			return "Carácter inválido";
+		postFixExp += stack.pop();
+	}
+	return postFixExp;
+}
 
   // Método para definir la proridad de caracteres
-	static int setPriority(char ch)
+static int setPriority(char ch)
+{
+	switch (ch)
 	{
-		switch (ch)
-		{
-		case '+':
-		case '-':
-			return 1;
+	case '+':
+	case '-':
+		return 1;
 	
-		case '*':
-		case '/':
-			return 2;
+	case '*':
+	case '/':
+		return 2;
 	
-		case '^':
-			return 3;
-		}
-		return -1;
+	case '^':
+		return 3;
 	}
+	return -1;
+}
 }
 
