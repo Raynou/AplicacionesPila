@@ -87,16 +87,16 @@ public class App {
       System.out.println(infixToPfix(infExpression));
 
 
-  }   
+    }   
 
   /* Método para convertir una expresión infija a postija */
-static String infixToPfix(String exp){
-	String postFixExp = new String("");
-		
-  CharStack stack = new CharStack(exp.length());
+   static String infixToPfix(String exp){
+     String postFixExp = new String("");	
+     CharStack stack = new CharStack(exp.length());
 	for (int i = 0; i<exp.length(); ++i){
+		
 		char auxChar = exp.charAt(i);
-
+		
 		if (Character.isLetterOrDigit(auxChar))
 			postFixExp += auxChar;
 	
@@ -108,11 +108,11 @@ static String infixToPfix(String exp){
 			postFixExp += stack.pop();				
 				stack.pop();
 		}
-		else{ 
+		else{
 			while (!stack.isEmpty() && setPriority(auxChar) <= setPriority(stack.peek())){
 				postFixExp += stack.pop();
 			}
-				stack.push(auxChar);
+			stack.push(auxChar);
 		}
 	
 	}
@@ -123,11 +123,10 @@ static String infixToPfix(String exp){
 		postFixExp += stack.pop();
 	}
 	return postFixExp;
-}
+   }
 
   // Método para definir la proridad de caracteres
-static int setPriority(char ch)
-{
+    static int setPriority(char ch){
 	switch (ch)
 	{
 	case '+':
@@ -142,6 +141,6 @@ static int setPriority(char ch)
 		return 3;
 	}
 	return -1;
-}
+   }
 }
 
