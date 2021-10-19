@@ -83,7 +83,8 @@ public class App {
       /* Ejercicio 4. Pasar una expresión de infija a postfija*/
       System.out.println("Ejercicio 4. De infija a postfija");
 
-      String infExpression = "4*(5+6-(8/2^3)-7)-1";
+      // String infExpression = "4*(5+6-(8/2^3)-7)-1";
+      String infExpression = "Z*W+Y";
       System.out.println(infixToPfix(infExpression));
 
 
